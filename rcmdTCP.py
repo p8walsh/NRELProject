@@ -16,13 +16,27 @@ def normalExecution(serverAddress, port, exeCount, delay, command, serverAddress
 
 if __name__ == '__main__':
     # Parse input arguments
-    if len(sys.argv) != 6:
+    if len(sys.argv) == 1:
+        print("No inputs detected, running default behavior.")
+
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        host = socket.gethostname()
+
+        serverAddress = host
+        port = 12345
+        exeCount = "5"
+        delay = "2"
+        command = "time /t"
+
+    elif len(sys.argv) != 6:
         raise RuntimeError("Wrong Command Line Input!\nServerName PortNumber ExecutionCount TimeDelay Command")
-    serverAddress = str(sys.argv[1])
-    port = int(sys.argv[2])
-    exeCount = str(sys.argv[3])
-    delay = str(sys.argv[4])
-    command = str(sys.argv[5])
+    
+    else:
+        serverAddress = str(sys.argv[1])
+        port = int(sys.argv[2])
+        exeCount = str(sys.argv[3])
+        delay = str(sys.argv[4])
+        command = str(sys.argv[5])
     serverAddressPort = (serverAddress, port)
 
     args = (serverAddress, port, exeCount, delay, command, serverAddressPort)
@@ -36,8 +50,8 @@ if __name__ == '__main__':
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             # Complete initial connection
             s.connect((serverAddress, port))
-
-            s.sendto(command.encode("Latin-1"), serverAddressPort)
+            msgToServer = exeCount + ", " + delay + ", " + command
+            s.sendto(msgToServer.encode("Latin-1"), serverAddressPort)
 
             for i in range(int(exeCount)):
                 print("Execution Number:", i)

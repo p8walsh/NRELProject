@@ -6,6 +6,7 @@ import subprocess
 X = 1024
 
 def parseCommand(command):
+    print("command: ", command)
     commandList = command.split(", ")
     exeCount = commandList[0]
     delay = commandList[1]
@@ -15,12 +16,15 @@ def parseCommand(command):
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = socket.gethostname()
-#host = "127.0.0.1"
 print(host)
 
-if len(sys.argv) != 2:
+if len(sys.argv) == 1:
+    print("No input detected. Using default port number 12345.")
+    port = 12345
+elif len(sys.argv) != 2:
     raise RuntimeError("Wrong number of input arguments!\nPlease input only a port number.")
-port = int(sys.argv[1])
+else:
+    port = int(sys.argv[1])
 
 
 s.bind((host, port))
@@ -46,7 +50,7 @@ while True:
                 print("Execution Output:", output.decode("Latin-1"))
                 print("\nOutput Size:", len(output), "bytes\n")
 
-                serverTime = subprocess.check_output("date")
+                serverTime = subprocess.check_output("time /t", stderr=subprocess.STDOUT, shell=True)
                 connection.send(serverTime)
                 connection.send(output)
 
