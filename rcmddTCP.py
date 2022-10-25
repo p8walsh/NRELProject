@@ -19,14 +19,16 @@ host = socket.gethostname()
 print(host)
 
 if len(sys.argv) == 1:
-    print("No input detected. Using default port number 12345.")
-    port = 12345
+    print("No input detected. Using default port number 12344.")
+    port = 12344
+    #print("Default host is also being used: proteus8.ddns.net")
+    #host = "proteus8.ddns.net"
 elif len(sys.argv) != 2:
     raise RuntimeError("Wrong number of input arguments!\nPlease input only a port number.")
 else:
     port = int(sys.argv[1])
 
-
+print(host)
 s.bind((host, port))
 
 while True:

@@ -22,8 +22,8 @@ if __name__ == '__main__':
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         host = socket.gethostname()
 
-        serverAddress = host
-        port = 12345
+        serverAddress = "proteus8.ddns.net"
+        port = 12344
         exeCount = "5"
         delay = "2"
         command = "time /t"
