@@ -15,7 +15,8 @@ def parseCommand(command):
     return exeCount, delay, command
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()
+#host = socket.gethostname()
+host = "0.0.0.0"
 print(host)
 
 if len(sys.argv) == 1:
