@@ -9,4 +9,5 @@ COPY rcmdTCP.py ./
 
 COPY . .
 
-CMD ["python", "./rcmdTCP.py"]
+ENTRYPOINT [ "python", "-u" ]
+CMD ["./rcmdTCP.py"]
