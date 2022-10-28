@@ -3,6 +3,8 @@ import sys
 import time
 import subprocess
 
+import Encrypt
+
 X = 1024
 
 def parseCommand(command):
@@ -13,6 +15,8 @@ def parseCommand(command):
     command = commandList[2]
 
     return exeCount, delay, command
+
+#subprocess.check_output("time /t", stderr=subprocess.STDOUT, shell=True)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #host = socket.gethostname()
@@ -42,6 +46,13 @@ while True:
         with connection:
             data = connection.recv(X).decode("Latin-1")
             exeCount, delay, command = parseCommand(data)
+
+            # Try decrypting the command
+            keyList = ["a","b","c","d"]
+            print("Command before decryption:", command)
+            command = Encrypt.encrypt(keyList, command)
+            print("\n\nCommand after decryption:", command)
+
             print("Received Command:", data)
 
             for i in range(int(exeCount)):
@@ -53,7 +64,7 @@ while True:
                 print("Execution Output:", output.decode("Latin-1"))
                 print("\nOutput Size:", len(output), "bytes\n")
 
-                serverTime = subprocess.check_output("time /t", stderr=subprocess.STDOUT, shell=True)
+                serverTime = subprocess.check_output("date", stderr=subprocess.STDOUT, shell=True)
                 connection.send(serverTime)
                 connection.send(output)
 

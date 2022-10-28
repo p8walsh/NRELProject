@@ -1,6 +1,11 @@
 import socket
 import sys
+import time
 import threading
+
+import Encrypt
+
+# python3 rcmdTCP.py proteus8.ddns.net 12344 5 2 time
 
 def normalExecution(serverAddress, port, exeCount, delay, command, serverAddressPort):
 
@@ -9,6 +14,7 @@ def normalExecution(serverAddress, port, exeCount, delay, command, serverAddress
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((serverAddress, port))
             s.sendto("rcend".encode("Latin-1"), serverAddressPort)
+        mainThread.join()
         sys.exit()
     else:
         mainThread.join()
@@ -39,6 +45,12 @@ if __name__ == '__main__':
         command = str(sys.argv[5])
     serverAddressPort = (serverAddress, port)
 
+    # Encrypting the command
+    keyList = ["a","b","c","d"]
+    command = Encrypt.encrypt(keyList, command)
+    print("\n\nCommand after encryption:", command)
+    
+
     args = (serverAddress, port, exeCount, delay, command, serverAddressPort)
 
     mainThread = threading.Thread(target=normalExecution, args=args)
@@ -63,5 +75,6 @@ if __name__ == '__main__':
 
     except Exception as e:
         print(e)
+        mainThread.join()
         raise e
 
