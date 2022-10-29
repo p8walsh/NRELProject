@@ -31,7 +31,7 @@ if __name__ == '__main__':
     port = StringVar(value="12344")
     exeCount = StringVar(value="5")
     delay = StringVar(value="2")
-    command = StringVar(value="time /t")
+    command = StringVar(value="time")
 
     ttk.Label(frm, text="Server Address: ").grid(column=0, row=0)
     ttk.Entry(frm, textvariable=serverAddress).grid(column=1, row=0)
