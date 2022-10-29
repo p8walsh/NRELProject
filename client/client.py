@@ -21,28 +21,20 @@ def normalExecution(serverAddress, port, exeCount, delay, command, serverAddress
         sys.exit()
 
 if __name__ == '__main__':
-    # Parse input arguments
-    if len(sys.argv) == 1:
-        print("No inputs detected, running default behavior.")
-
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        host = socket.gethostname()
-
+    print("hello????", flush=True)
+    serverAddress = input("Input server address: ")
+    if serverAddress == "default":
         serverAddress = "proteus8.ddns.net"
         port = 12344
         exeCount = "5"
         delay = "2"
         command = "time /t"
-
-    elif len(sys.argv) != 6:
-        raise RuntimeError("Wrong Command Line Input!\nServerName PortNumber ExecutionCount TimeDelay Command")
-    
     else:
-        serverAddress = str(sys.argv[1])
-        port = int(sys.argv[2])
-        exeCount = str(sys.argv[3])
-        delay = str(sys.argv[4])
-        command = str(sys.argv[5])
+        port = int(input("Input port number: "))
+        exeCount = str(input("Input number of command executions: "))
+        delay = str(input("Input delay between command executions: "))
+        command = str(input("Input command: "))
+
     serverAddressPort = (serverAddress, port)
 
     # Encrypting the command
@@ -50,7 +42,6 @@ if __name__ == '__main__':
     command = Encrypt.encrypt(keyList, command)
     print("\n\nCommand after encryption:", command)
     
-
     args = (serverAddress, port, exeCount, delay, command, serverAddressPort)
 
     mainThread = threading.Thread(target=normalExecution, args=args)
