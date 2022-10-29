@@ -49,34 +49,34 @@ def oddEncryption(input, keyList):
 def encrypt(keyList, plaintext):
     ciphertext = ""
     if len(plaintext) == 0:
-        print("The infile contains no data!")
+        #print("The infile contains no data!")
         raise RuntimeError
 
     # If it is, iterate through the unencrypted data and encode it piece by piece 
-    print("Before Encrypting: ", plaintext, type(plaintext))
+    #print("Before Encrypting: ", plaintext, type(plaintext))
     
     # Then while inside this loop encrypt the data
     # First need to check that there are an even number of characters
     if len(plaintext)%2 != 0:
         for j in range(0, len(plaintext)-1,2):
-            print("Now Encrypting: ", plaintext[j],plaintext[j+1])
+            #print("Now Encrypting: ", plaintext[j],plaintext[j+1])
             outputLeft, outputRight = encryption(plaintext[j],plaintext[j+1], keyList)
 
-            print(type(outputLeft), outputLeft)
+            #print(type(outputLeft), outputLeft)
             ciphertext = ciphertext + outputLeft + outputRight
 
-        print("Now Encrypting: ", plaintext[len(plaintext)-1])
+        #print("Now Encrypting: ", plaintext[len(plaintext)-1])
         outputLeft = oddEncryption(plaintext[len(plaintext)-1], keyList)
 
-        print(type(outputLeft), outputLeft)
+        #print(type(outputLeft), outputLeft)
         ciphertext = ciphertext + outputLeft
 
     else:
         for j in range(0, len(plaintext),2):
-            print("Now Encrypting: ", plaintext[j],plaintext[j+1])
+            #print("Now Encrypting: ", plaintext[j],plaintext[j+1])
             outputLeft, outputRight = encryption(plaintext[j],plaintext[j+1], keyList)
 
-            print(type(outputLeft), outputLeft)
+            #print(type(outputLeft), outputLeft)
             ciphertext = ciphertext + outputLeft + outputRight
 
     return(ciphertext)

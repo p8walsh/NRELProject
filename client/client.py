@@ -2,6 +2,8 @@ import socket
 import sys
 import time
 import threading
+from tkinter import *
+from tkinter import ttk
 
 import Encrypt
 
@@ -21,19 +23,37 @@ def normalExecution(serverAddress, port, exeCount, delay, command, serverAddress
         sys.exit()
 
 if __name__ == '__main__':
-    print("hello????", flush=True)
-    serverAddress = input("Input server address: ")
-    if serverAddress == "default":
-        serverAddress = "proteus8.ddns.net"
-        port = 12344
-        exeCount = "5"
-        delay = "2"
-        command = "time /t"
-    else:
-        port = int(input("Input port number: "))
-        exeCount = str(input("Input number of command executions: "))
-        delay = str(input("Input delay between command executions: "))
-        command = str(input("Input command: "))
+    root = Tk()
+    frm = ttk.Frame(root, padding=10)
+    frm.grid()
+
+    serverAddress = StringVar(value="proteus8.ddns.net")
+    port = StringVar(value="12344")
+    exeCount = StringVar(value="5")
+    delay = StringVar(value="2")
+    command = StringVar(value="time /t")
+
+    ttk.Label(frm, text="Server Address: ").grid(column=0, row=0)
+    ttk.Entry(frm, textvariable=serverAddress).grid(column=1, row=0)
+    ttk.Label(frm, text="Port Number: ").grid(column=0, row=1)
+    ttk.Entry(frm, textvariable=port).grid(column=1, row=1)
+    ttk.Label(frm, text="Command: ").grid(column=0, row=2)
+    ttk.Entry(frm, textvariable=command).grid(column=1, row=2)
+    ttk.Label(frm, text="Times to execute command: ").grid(column=0, row=3)
+    ttk.Entry(frm, textvariable=exeCount).grid(column=1, row=3)
+    ttk.Label(frm, text="Delay between executions: ").grid(column=0, row=4)
+    ttk.Entry(frm, textvariable=delay).grid(column=1, row=4)
+    ttk.Button(frm, text="Enter", command=root.destroy).grid(column=1, row=5)
+    root.bind("<Return>", lambda e: root.destroy())
+    root.mainloop()
+
+    serverAddress = serverAddress.get()
+    port = int(port.get())
+    exeCount = exeCount.get()
+    delay = delay.get()
+    command = command.get()
+
+    print(serverAddress, port, exeCount, delay, command)
 
     serverAddressPort = (serverAddress, port)
 
