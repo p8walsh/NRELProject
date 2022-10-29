@@ -58,7 +58,10 @@ while True:
             for i in range(int(exeCount)):
                 print("Execution Number:", i)
                 startTime = time.time()
-                output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+                try:
+                    output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+                except subprocess.CalledProcessError as e:
+                    output = str(e).encode('Latin-1')
                 endTime = time.time()
                 print("Execution Time:", endTime-startTime, "second(s)")
                 print("Execution Output:", output.decode("Latin-1"))

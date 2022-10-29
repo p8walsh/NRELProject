@@ -1,5 +1,10 @@
 README file for Peter Walsh's NREL Interview Project.
 
+Several libraries are necessary for the client to run properly. To install, run:
+      > pip install tk 
+      > pip install cryptography
+
+
 How to use:
 TBD
 
