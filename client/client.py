@@ -70,8 +70,8 @@ if __name__ == '__main__':
     frm = ttk.Frame(root, padding=10)
     frm.grid()
 
-    #serverAddress = StringVar(value="proteus8.ddns.net")
-    serverAddress = StringVar(value="PetersComputer")
+    serverAddress = StringVar(value="proteus8.ddns.net")
+    #serverAddress = StringVar(value="PetersComputer")
     port = StringVar(value="12344")
     
 
