@@ -101,7 +101,7 @@ if __name__ == '__main__':
         auth_status = BooleanVar(value=False)
         ttk.Label(password_frm, text="Password: ").grid(column=0, row=0)
         ttk.Entry(password_frm, textvariable=password, show="*").grid(column=1, row=0)
-        ttk.Button(password_frm, text="Enter", command=password_root.destroy).grid(column=1, row=1)
+        ttk.Button(password_frm, text="Enter", command=lambda: execute_command(s, command.get(), exeCount.get(), delay.get(), results, command_root)).grid(column=1, row=1)
         ttk.Label(password_frm, textvariable=errormsg).grid(column=1, row=2)
         password_root.bind("<Return>", lambda e: authenticate(password.get(), s, serverAddressPort, errormsg, auth_status, password_root))
 
