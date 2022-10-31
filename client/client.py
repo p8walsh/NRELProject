@@ -13,7 +13,6 @@ def authenticate(password, socket, serverAddressPort, errormsg, auth_status, pas
     digest = hashes.Hash(hashes.SHA512())
     digest.update(password.encode('Latin-1'))
     hashed_password = digest.finalize()
-    print(hashed_password)
 
     # Then transmit password
     socket.sendto(hashed_password, serverAddressPort)
@@ -70,9 +69,8 @@ if __name__ == '__main__':
     frm = ttk.Frame(root, padding=10)
     frm.grid()
 
-    serverAddress = StringVar(value="proteus8.ddns.net")
-    #serverAddress = StringVar(value="PetersComputer")
-    port = StringVar(value="12344")
+    serverAddress = StringVar(value="Ex: computer1.ddns.net")
+    port = StringVar(value="Ex: 12344")
     
 
     ttk.Label(frm, text="Server Address: ").grid(column=0, row=0)
@@ -107,16 +105,17 @@ if __name__ == '__main__':
 
         password_root.mainloop()
 
-        print(auth_status.get())
+        if auth_status.get() == True:
+            print("Authentication Successful!")
 
         # Allow user to continue entering new commands
         command_root = Tk()
         command_frm = ttk.Frame(command_root, padding=10)
         command_frm.grid()
         results = StringVar()
-        exeCount = StringVar(value="5")
-        delay = StringVar(value="2")
-        command = StringVar(value="time")
+        exeCount = StringVar(value="Ex: 5")
+        delay = StringVar(value="Ex: 2")
+        command = StringVar(value="Ex: date")
         ttk.Label(command_frm, text="Command: ").grid(column=0, row=0)
         ttk.Entry(command_frm, textvariable=command).grid(column=1, row=0)
         ttk.Label(command_frm, text="Times to execute command: ").grid(column=0, row=1)

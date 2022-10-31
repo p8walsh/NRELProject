@@ -24,24 +24,18 @@ def parseCommand(command):
 
     return exeCount, delay, command
 
-#subprocess.check_output("time /t", stderr=subprocess.STDOUT, shell=True)
-
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#host = socket.gethostname()
 host = "0.0.0.0"
-print(host)
 
 if len(sys.argv) == 1:
     print("No input detected. Using default port number 12344.")
     port = 12344
-    #print("Default host is also being used: proteus8.ddns.net")
-    #host = "proteus8.ddns.net"
+    
 elif len(sys.argv) != 2:
     raise RuntimeError("Wrong number of input arguments!\nPlease input only a port number.")
 else:
     port = int(sys.argv[1])
 
-print(host)
 s.bind((host, port))
 
 
@@ -77,6 +71,7 @@ while True:
 
             while True:
                 data = connection.recv(X).decode("Latin-1")
+                print("Data received: ", data)
                 exeCount, delay, command = parseCommand(data)
 
                 # Try decrypting the command
@@ -114,6 +109,15 @@ while True:
     except BrokenPipeError as e:
         print("BrokenPipeError, most likely caused by rcend command on client side.\nAttempting to exit gracefully.")
         print(e, '\n\n\n')
+        s.shutdown(socket.SHUT_RDWR)
+        s.close()
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        host = socket.gethostname()
+        s.bind((host,port))
+    
+    except IndexError as e:
+        print("IndexError, most likely caused by user closing their window.\nAttempting to exit gracefully.")
+        print(e)
         s.shutdown(socket.SHUT_RDWR)
         s.close()
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
