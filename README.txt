@@ -14,6 +14,7 @@ Outline of README:
       
       THIS IS POTENTIALLY VERY DANGEROUS. There are currently very few safeguards put in place to prevent unauthorized execution. That means it is possible for an attacker to execute any command on the "server" machine, including but not limited to: commands that would shutdown the "server" machine, commands that install and run new programs on the "server" machine, commands that send potentially sensitive files on the "server" machine to other machines, or even commands that could spread malware to other machines that are networked with the "server" machine. It is strongly recommended to use virtual machines or, as will be explained later, Docker images to execute the "server.py" script to help mitigate harm caused by unauthorized attackers.
       
+      In future updates the author will add more security features to mitigate the risks currently present in this project.
 
 2. Installation instructions:
       !Before you begin the installation process, please review the information about the potential risks presented in the second paragraph of the Project Overview. Proceed only if you understand and accept those risks!
@@ -24,8 +25,7 @@ Outline of README:
       b) Install Python.
       
       c) Several libraries are necessary for the scripts to run properly. To install, run:
-            > pip install tk 
-            > pip install cryptography
+            > pip install -r requirements.txt
       
       d) In order to be able interact with the server remotely, you will need to use port forwarding. On the machine/network that will be running the server script, choose a port that the script will be run on (default is 12344) and forward that port. If you do not choose port 12344, you will need to edit ~line 36~ of server.py to reflect the port you chose.
       
