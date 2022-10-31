@@ -27,7 +27,7 @@ Outline of README:
       c) Several libraries are necessary for the scripts to run properly. To install, run:
             > pip install -r requirements.txt
       
-      d) In order to be able interact with the server remotely, you will need to use port forwarding. On the machine/network that will be running the server script, choose a port that the script will be run on (default is 12344) and forward that port. If you do not choose port 12344, you will need to edit ~line 36~ of server.py to reflect the port you chose.
+      d) In order to be able interact with the server remotely, you will need to use port forwarding. On the machine/network that will be running the server script, choose a port that the script will be run on (default is 12344) and forward that port. If you do not choose port 12344, you will need to edit lines 52 and 53 of server.py to reflect the port you chose.
       
       The steps below are optional but recommended through step g.
       e) Install Docker.
