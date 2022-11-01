@@ -43,7 +43,7 @@ More information at https://docs.docker.com/engine/reference/commandline/build/
 
 ## 3. Operation instructions:
 
-#### a) Start the server on the computer you'd like to remotely connect to. 
+### a) Start the server on the computer you'd like to remotely connect to. 
 If using Docker, run this command or something similar:
 > docker run -i --rm -p 0.0.0.0:12344:12344 server
 
@@ -56,24 +56,24 @@ If not using Docker, run this command:
 If the server has started properly, you should see the following output (there may be some output before it as well depending on if you used the PORTNUMBER input argument):
 > Waiting for data on port [PORTNUMBER]
 
-#### b) Start the client on the computer you'd like to remotely connect to the server from.
+### b) Start the client on the computer you'd like to remotely connect to the server from.
 Run the following command:
 > ../NRELProject/client> python client.py
 
 If the client has started properly, there should be a pop-up GUI which prompts you to enter the IP address of the server and the port number the server is listening on.
          NOTE: If the client ever stops responding, try force closing the GUI and restarting at step b. Many errors can be resolved that way without having to restart the server.
 
-#### c) Enter the IP address of the server and the port number the server is listening on.
+### c) Enter the IP address of the server and the port number the server is listening on.
 
  If this step is successful, that window will close and a new one prompting a password will open. On the server side, there will also be a new line of output saying "Connected to client!"
          If this step is unsuccessful, you will likely have to force close the program and try again from step b.
       
-####  d) Enter the password. (default is password123, can be changed by editing the plaintext password in server.py)
+### d) Enter the password. (default is password123, can be changed by editing the plaintext password in server.py)
 
 If this step is successful, a line of output will appear saying "Authentication Successful!" and the GUI will close and a new GUI wll open.
 If this step is unsuccessful, a line will appear underneath the enter button saying "Authentication Unsuccessful. Try again." and the GUI will not close.
 
-####  e) Enter the desired command to run, the number of times to execute that command, and the delay in seconds between executing that command.
+### e) Enter the desired command to run, the number of times to execute that command, and the delay in seconds between executing that command.
 Pay special attention to the operating system the server is running, as that will affect which commands will execute successfully.
 
 The default example:
@@ -86,7 +86,7 @@ The command date would be executed 5 times with a 2 second delay between each ru
  
 More complex commands could also be used. For example, one could use the wget command to download files to the server. This illustrates one of many huge security problems with this project, as a knowledgeable attacker could download and then execute malicious programs on the server machine.
 
-#### f) Repeat step e as many times as desired. To close the session, type "stop" in the command window or simply close the GUI.
+### f) Repeat step e as many times as desired. To close the session, type "stop" in the command window or simply close the GUI.
 
 For questions or more information, email p8walsh@gmail.com.
 
